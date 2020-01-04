@@ -11,8 +11,8 @@ class App extends Component {
     perPage: 25
   }
 
-  constructor(props) {
-    super(props);
+  constructor(...props) {
+    super(...props);
     this.state = this.defaultState;
   }
 

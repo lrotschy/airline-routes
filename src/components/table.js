@@ -9,21 +9,22 @@ class Table extends Component {
     perPage: 25,
     className: "table"
   }
-  constructor(props) {
-    super(props);
-    this.state = { page: 0 };
+
+  constructor(...props) {
+    super(...props);
+    this.state = {
+      page: 0
+    };
   }
 
-  previousPage(e) {
+  previousPage = (e) => {
     e.preventDefault();
-    const currentPage = this.state.page;
-    this.setState({page: currentPage - 1})
+    this.setState({page: this.state.page - 1})
   }
 
-  nextPage(e) {
+  nextPage = (e) => {
     e.preventDefault();
-    const currentPage = this.state.page;
-    this.setState({page: currentPage + 1})
+    this.setState({page: this.state.page + 1})
   }
 
   render() {
@@ -37,9 +38,6 @@ class Table extends Component {
     const bodyRows = this.props.rows.slice(start, start + this.props.perPage).map( (row) => {
       const rows = this.props.columns.map( (col) => {
         const value = row[col.property];
-        console.log(this.props.format(col.property, value));
-        console.log(col.property)
-        console.log(value)
         return <td key={col.property + value}>{ this.props.format(col.property, value) }</td>
       });
       return <tr key={Object.values(row).join(':')}>
@@ -47,9 +45,6 @@ class Table extends Component {
       </tr>
     });
 
-    // airports: {"code":"BGG","name":"Bingöl Airport","lat":38.861111,"long":40.5925},
-    // routes: {"airline":4533,"src":"HBE","dest":"RUH"},
-    // airlines:     {"id":2143,"name":"Egyptair"},
     return (
       <div>
         <table className={this.props.className}>
@@ -69,7 +64,7 @@ class Table extends Component {
           <button key="previous" disabled={this.state.page === 0} onClick={this.previousPage}>
               Previous Page
           </button>
-          <button key="next" disabled={start + this.state.perPage >= 0} onClick={this.nextPage}>
+          <button key="next" disabled={start + this.state.perPage >= this.props.rows.length} onClick={this.nextPage}>
               Next Page
           </button>
         </div>
