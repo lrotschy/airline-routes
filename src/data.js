@@ -1396,27 +1396,15 @@ const airports = [
 ];
 
 function getAirlineById(id) {
-  const airline = this.airlines.filter(airline => {
-    return airline.id === id
-  })[0];
-
-  return airline.name;
-}
+    return airlines.find( (a) => a.id === id );
+};
 
 function getAirportByCode(code) {
-  const airport = this.airports.filter(airport => {
-    return airport.code === code;
-  })[0];
+    return airports.find( (a) => a.code === code );
+};
 
-  return airport.name;
-}
-
-// function getAirlineById(id) {
-//     return airlines.find( (a) => a.id === id );
-// };
-//
-// function getAirportByCode(code) {
-//     return airports.find( (a) => a.code === code );
-// };
+// airports: {"code":"BGG","name":"Bingöl Airport","lat":38.861111,"long":40.5925},
+// routes: {"airline":4533,"src":"HBE","dest":"RUH"},
+// airlines:     {"id":2143,"name":"Egyptair"},
 
 export default {routes, airlines, airports, getAirlineById, getAirportByCode};
