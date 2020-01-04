@@ -55,7 +55,6 @@ class App extends Component {
     })
   }
 
-
   render() {
     const routes = this.filterRoutes();
 
@@ -65,6 +64,24 @@ class App extends Component {
       {name: 'Destination Airport', property: 'dest'},
     ];
 
+    const filteredRoutesByAirport = DATA.routes.filter(this.hasAirport);
+
+    const filteredRoutesByAirline = DATA.routes.filter(this.hasAirline);
+
+    const filteredAirports = DATA.airports.filter((airport) => {
+      return filteredRoutesByAirline.some((route) => {
+        return route.src === airport.code || route.dest === airport.code
+      })
+    })
+
+    const filteredAirlines = DATA.airlines.filter((airline) => {
+      return filteredRoutesByAirport.some((route) => {
+        return route.airline === airline.id;
+      })
+    })
+
+
+
     return (
       <div className="app">
         <header className="header">
@@ -72,7 +89,7 @@ class App extends Component {
         </header>
         <div className="select airline">
           <Select
-            options={DATA.airlines}
+            options={filteredAirlines}
             keyName="id"
             titleKey="All Airlines"
             value=""
@@ -81,7 +98,7 @@ class App extends Component {
         </div>
         <div className="select airport">
           <Select
-            options={DATA.airports}
+            options={filteredAirports}
             keyName="code"
             titleKey="All Airports"
             value=""
