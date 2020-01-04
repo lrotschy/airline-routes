@@ -46,6 +46,7 @@ class Table extends Component {
     });
 
     return (
+
       <div>
         <table className={this.props.className}>
           <thead>

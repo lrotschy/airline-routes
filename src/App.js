@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import DATA from './data.js'
 import Table from './components/table.js';
-// import Select from './components/select.js';
+import Select from './components/select.js';
 
 class App extends Component {
   defaultState = {
@@ -39,7 +39,18 @@ class App extends Component {
         <header className="header">
           <h1 className="title">Airline Routes</h1>
         </header>
-
+        <div className="select airline">
+          <Select
+            options={DATA.airlines}
+            keyName="id"
+          />
+        </div>
+        <div className="select airport">
+          <Select
+            options={DATA.airports}
+            keyName="code"
+          />
+        </div>
         <div className="table">
           <Table className="routes-table" columns={columns} rows={routes} format={this.formatValue}/>
         </div>
