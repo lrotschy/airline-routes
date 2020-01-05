@@ -80,8 +80,6 @@ class App extends Component {
       })
     })
 
-
-
     return (
       <div className="app">
         <header className="header">
@@ -92,7 +90,7 @@ class App extends Component {
             options={filteredAirlines}
             keyName="id"
             titleKey="All Airlines"
-            value=""
+            value={this.state.airline}
             onSelect={this.selectAirline}
           />
         </div>
@@ -101,12 +99,12 @@ class App extends Component {
             options={filteredAirports}
             keyName="code"
             titleKey="All Airports"
-            value=""
+            value={this.state.airport}
             onSelect={this.selectAirport}
           />
         </div>
         <div className="clearFilters">
-          <button className="clearFiltersButton" onClick={this.clearFilters}>Clear Filters</button>
+          <button className="clearFiltersButton" disabled={this.state === this.defaultState} onClick={this.clearFilters}>Clear Filters</button>
         </div>
         <div className="table">
           <Table className="routes-table" columns={columns} rows={routes} format={this.formatValue}/>

@@ -10,6 +10,8 @@ class Select extends Component {
   }
 
   render() {
+    console.log(this.props.titleKey);
+    console.log(this.props.options.length)
 
     const options = this.props.options.map((option) => {
       const value = option[this.props.keyName]
