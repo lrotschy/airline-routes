@@ -87,7 +87,8 @@ class App extends Component {
         </header>
         <div className="select airline">
           <Select
-            options={filteredAirlines}
+            options={DATA.airlines}
+            enabledOptions={filteredAirlines}
             keyName="id"
             titleKey="All Airlines"
             value={this.state.airline}
@@ -96,7 +97,8 @@ class App extends Component {
         </div>
         <div className="select airport">
           <Select
-            options={filteredAirports}
+            options={DATA.airports}
+            enabledOptions={filteredAirports}
             keyName="code"
             titleKey="All Airports"
             value={this.state.airport}

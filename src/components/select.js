@@ -15,7 +15,12 @@ class Select extends Component {
 
     const options = this.props.options.map((option) => {
       const value = option[this.props.keyName]
-      return <option key={value} value={value}>{option.name}</option>;
+      if (this.props.enabledOptions.includes(option)) {
+        return <option key={value} value={value} >{option.name}</option>
+      } else {
+        return <option key={value} value={value} disabled>{option.name}</option>;
+      }
+
     })
 
     options.unshift(<option key={this.props.titleKey} value="All">{this.props.titleKey}</option>)
